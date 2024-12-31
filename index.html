@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WPC Decking Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .category-section {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 28px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #fff;
+            padding: 20px;
+        }
+
+        .product-name {
+            padding: 15px;
+            font-size: 16px;
+            color: #444;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .category-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+    </div>
+
+    <script>
+        const categories = [
+            {
+                title: 'Diamand / Gravel / Jade Texture (All with fibreglass)',
+                products: [
+                    { id: 'LTY80-0213', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-1.png' },
+                    { id: 'LTY51-0115', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-2.png' },
+                    { id: 'LTY51-0215', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-3.png' },
+                    { id: 'LTY51-0315', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-4.png' },
+                    { id: 'LTY51-0415', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-5.png' },
+                    { id: 'LTY45-0206', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-6.png' },
+                    { id: 'LTY45-0306', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-7.png' },
+                    { id: 'LTY45-0406', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-8.png' },
+                    { id: 'LTY45-0506', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-9.png' },
+                    { id: 'LTY45-0106', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-10.png' },
+                    { id: 'LTY60-0206', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-11.png' },
+                    { id: 'LTY60-0306', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_f-12.png' }
+                ]
+            },
+            {
+                title: 'Gem / Sand / Meteorite / Emery Texture (All with fibreglass)',
+                products: [
+                    { id: 'LTY45-020211', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-1.png' },
+                    { id: 'LTY51-0304', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-2.png' },
+                    { id: 'LTY51-0204', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-3.png' },
+                    { id: 'LTY61-0204', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-4.png' },
+                    { id: 'LTY46-0108', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-5.png' },
+                    { id: 'LTY50-1409', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-6.png' },
+                    { id: 'LTY80-02021', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-7.png' },
+                    { id: 'LTY46-0208', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-8.png' },
+                    { id: 'LTY46-0308', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-9.png' },
+                    { id: 'LTY46-2308', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-10.png' },
+                    { id: 'LTY46-0408', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_2-11.png' }
+                ]
+            },
+            {
+                title: 'Outdoor Sand Texture (All with fibreglass)',
+                products: [
+                    { id: 'LTY45-020211', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_3-1.png' },
+                    { id: 'LTY51-0304', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_3-2.png' },
+                    { id: 'LTY51-0204', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_3-3.png' },
+                    { id: 'LTY61-0204', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_3-4.png' }
+                ]
+            },
+            {
+                title: 'Gem / S-Sand Texture',
+                products: [
+                    { id: 'LTY45-0102', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-1.png' },
+                    { id: 'LTY45-0302', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-2.png' },
+                    { id: 'LTY45-0402', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-3.png' },
+                    { id: 'LTY45-0502', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-4.png' },
+                    { id: 'LTY60-0402', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-5.png' },
+                    { id: 'LTY60-0102', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-6.png' },
+                    { id: 'LTY60-0202', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-7.png' },
+                    { id: 'LTY45-0214', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-8.png' },
+                    { id: 'LTY60-0302', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-9.png' },
+                    { id: 'LTY35-0202', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-10.png' },
+                    { id: 'LTY35-0102', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-11.png' },
+                    { id: 'LTY35-0302', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-12.png' },
+                    { id: 'LTY35-0402', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-13.png' },
+                    { id: 'LTY45-0202', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_4-14.png' }
+                ]
+            },
+            {
+                title: 'Lychee / Cloth Texture',
+                products: [
+                    { id: 'LTY35-0201', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-2.png' },
+                    { id: 'LTY35-0101', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-3.png' },
+                    { id: 'LTY45-0201', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-4.png' },
+                    { id: 'LTY45-0501', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-5.png' },
+                    { id: 'LTY45-0401', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-6.png' },
+                    { id: 'LTY45-0301', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-7.png' },
+                    { id: 'LTY45-0103', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-8.png' },
+                    { id: 'LTY45-0803', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-9.png' },
+                    { id: 'LTY51-0103', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-10.png' },
+                    { id: 'LTY51-0803', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-11.png' },
+                    { id: 'LTY35-0101', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_5-1.png' }
+                ]
+            },
+            {
+                title: 'Flat Surface',
+                products: [
+                    { id: 'LTY35-042', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-1.png' },
+                    { id: 'LTY35-031', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-2.png' },
+                    { id: 'LTY35-045', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-3.png' },
+                    { id: 'LTY35-025', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-4.png' },
+                    { id: 'LTY40-027', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-5.png' },
+                    { id: 'LTY40-026', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-6.png' },
+                    { id: 'LTY40-032', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-7.png' },
+                    { id: 'LTY40-025', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-8.png' },
+                    { id: 'LTY40-042', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-9.png' },
+                    { id: 'LTY40-026', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-10.png' },
+                    { id: 'LTY50-025', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-11.png' },
+                    { id: 'LTY50-044', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-12.png' },
+                    { id: 'LTY50-042', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-13.png' },
+                    { id: 'LTY50-031', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-14.png' },
+                    { id: 'LTY50-033', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_6-15.png' }
+                ]
+            },
+            {
+                title: 'Wooden Texture',
+                products: [
+                    { id: 'LTY45-0605F', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_7-1.png' },
+                    { id: 'LTY45-0605L', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_7-2.png' },
+                    { id: 'LTY45-0605X', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_7-3.png' },
+                    { id: 'LTY45-0605Q', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_7-4.png' },
+                    { id: 'LTY51-0605F (With fibreglass)', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_7-5.png' },
+                    { id: 'LTY60-0605F (With fibreglass)', image: 'https://lexsureflooring.com/wp-content/uploads/2024/12/sports_7-6.png' }
+                ]
+            }
+        ];
+
+        const mainContainer = document.getElementById('mainContainer');
+
+        categories.forEach(category => {
+            const categorySection = document.createElement('div');
+            categorySection.className = 'category-section';
+
+            const categoryTitle = document.createElement('h2');
+            categoryTitle.className = 'category-title';
+            categoryTitle.textContent = category.title;
+
+            const productsGrid = document.createElement('div');
+            productsGrid.className = 'products-grid';
+
+            category.products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.id}" class="product-image">
+                    <div class="product-name">${product.id}</div>
+                `;
+
+                productsGrid.appendChild(productCard);
+            });
+
+            categorySection.appendChild(categoryTitle);
+            categorySection.appendChild(productsGrid);
+            mainContainer.appendChild(categorySection);
+        });
+    </script>
+</body>
+</html>
